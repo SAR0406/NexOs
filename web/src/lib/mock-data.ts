@@ -58,7 +58,11 @@ export function proposeAction(input: { target: string; objective: string }) {
     target: input.target,
     payload: {
       subject: `Follow-up: ${input.objective}`,
-      body: `Hi there,\\n\\nQuick follow-up on ${input.objective}. I wanted to make sure this doesn't stall and to share next best steps.\\n\\nBest,`,
+      body: `Hi there,
+
+Quick follow-up on ${input.objective}. I wanted to make sure this doesn't stall and to share next best steps.
+
+Best,`,
     },
     urgency: "medium",
   };
