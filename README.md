@@ -4,12 +4,12 @@ Product docs are at repository root (`PRD.md`, `MVP.md`, `techstack.md`, `flow.m
 
 The runnable web app scaffold is in:
 
-- `/home/runner/work/NexOs/NexOs/web`
+- `./web`
 
 ## Run the app
 
 ```bash
-cd /home/runner/work/NexOs/NexOs/web
+cd web
 npm install
 npm run dev
 ```
