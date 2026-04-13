@@ -15,8 +15,11 @@ App: `http://localhost:3000`
 
 - Landing page (`/`)
 - Dashboard (`/dashboard`)
+- Onboarding (`/onboarding`)
+- Memory (`/memory`)
 - Chat page (`/chat`)
 - Alerts page (`/alerts`)
+- Actions page (`/actions`)
 - Settings page (`/settings`)
 - API routes:
   - `POST /api/onboarding`
@@ -24,6 +27,8 @@ App: `http://localhost:3000`
   - `GET /api/alerts`
   - `GET|POST /api/actions`
   - `GET /api/briefing`
+  - `POST /api/jobs/watcher`
+  - `POST /api/jobs/briefing`
 
 ## Notes
 

@@ -41,3 +41,14 @@ export interface BusinessSummary {
   alerts: AlertItem[];
   pendingActions: ActionProposal[];
 }
+
+export interface MemoryChunk {
+  id: string;
+  source: "gmail" | "stripe" | "notion" | "onboarding";
+  content: string;
+}
+
+export interface MemoryContext {
+  contextSummary: string;
+  chunks: MemoryChunk[];
+}

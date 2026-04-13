@@ -1,4 +1,4 @@
-import { BusinessSummary } from "@/lib/types";
+import { BusinessSummary, MemoryContext } from "@/lib/types";
 
 const summary: BusinessSummary = {
   businessName: "Acorn Growth Studio",
@@ -66,4 +66,35 @@ Best,`,
     },
     urgency: "medium",
   };
+}
+
+const memoryContext: MemoryContext = {
+  contextSummary:
+    "Acorn Growth Studio is a boutique growth agency with a concentration of recurring-service clients. Revenue pressure is currently tied to delayed follow-ups and a recent churn spike in a subset of at-risk accounts.",
+  chunks: [
+    {
+      id: "m1",
+      source: "gmail",
+      content: "Northstar Dental has not replied in 14 days after implementation timeline follow-up.",
+    },
+    {
+      id: "m2",
+      source: "stripe",
+      content: "Weekly MRR delta is -8.0% with $1,200 churned MRR in the current period.",
+    },
+    {
+      id: "m3",
+      source: "notion",
+      content: "Q2 retention initiative notes include win-back offers for high-value accounts.",
+    },
+    {
+      id: "m4",
+      source: "onboarding",
+      content: "Founder objective: reduce reactive work and focus on pipeline conversion.",
+    },
+  ],
+};
+
+export function getMemoryContext(): MemoryContext {
+  return memoryContext;
 }
