@@ -39,8 +39,15 @@ export function getBusinessSummary(): BusinessSummary {
 
 export function getBriefing() {
   const s = getBusinessSummary();
+  const weeklyDelta = (s.revenue.weekOverWeekDelta * 100).toFixed(1);
+  const revenueSummary = [
+    `MRR: $${s.revenue.mrr.toLocaleString()} (${weeklyDelta}% vs last week).`,
+    `New: $${s.revenue.newMrr.toLocaleString()}.`,
+    `Churned: $${s.revenue.churnedMrr.toLocaleString()}.`,
+  ].join(" ");
+
   return {
-    revenue_summary: `MRR: $${s.revenue.mrr.toLocaleString()} (${(s.revenue.weekOverWeekDelta * 100).toFixed(1)}% vs last week). New: $${s.revenue.newMrr.toLocaleString()}. Churned: $${s.revenue.churnedMrr.toLocaleString()}.`,
+    revenue_summary: revenueSummary,
     client_pulse: s.clients.map((c) => ({ name: c.name, status: c.status, reason: `${c.daysSilent} days silent`, action: c.status === "at_risk" ? "Follow up" : "Monitor" })),
     priorities: [
       "Follow up with Northstar Dental to recover at-risk account",

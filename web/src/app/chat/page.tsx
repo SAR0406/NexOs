@@ -13,8 +13,10 @@ type ChatResult = {
   };
 };
 
+const DEFAULT_PROMPT = "What should I focus on this week?";
+
 export default function ChatPage() {
-  const [message, setMessage] = useState("What should I focus on this week?");
+  const [message, setMessage] = useState(DEFAULT_PROMPT);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ChatResult | null>(null);
@@ -40,8 +42,12 @@ export default function ChatPage() {
       }
 
       setResult(data);
-    } catch {
-      setError("Network error while calling chat");
+    } catch (error) {
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Unable to send message. Please check your connection and try again.",
+      );
     } finally {
       setLoading(false);
     }

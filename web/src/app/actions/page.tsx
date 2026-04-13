@@ -31,7 +31,13 @@ export default function ActionsPage() {
         }
       } catch (error) {
         if (active) {
-          setState({ loading: false, error: error instanceof Error ? error.message : "Unexpected error" });
+          setState({
+            loading: false,
+            error:
+              error instanceof Error
+                ? error.message
+                : "An unexpected error occurred while loading actions. Please refresh the page.",
+          });
         }
       }
     }
@@ -55,12 +61,23 @@ export default function ActionsPage() {
     const data = (await response.json()) as { ok?: boolean; error?: string };
 
     if (!response.ok || !data.ok) {
-      setNotice(data.error ?? "Failed to update action");
+      setNotice(data.error ?? "Unable to update action. Please try again.");
       return;
     }
 
-    setActions((prev) => prev.map((action) => (action.id === actionId ? { ...action, status: decision === "approve" ? "approved" : "rejected" } : action)));
-    setNotice(`Action ${actionId} ${decision}d.`);
+    setActions((prev) =>
+      prev.map((action) => {
+        if (action.id !== actionId) {
+          return action;
+        }
+
+        return {
+          ...action,
+          status: decision === "approve" ? "approved" : "rejected",
+        };
+      }),
+    );
+    setNotice(`Action ${actionId} ${decision === "approve" ? "approved" : "rejected"}.`);
   }
 
   return (
